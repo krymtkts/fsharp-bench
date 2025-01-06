@@ -1,20 +1,20 @@
-﻿module benchmark
+module benchmark
 
 open BenchmarkDotNet.Attributes
 
-type SimpleRecord =
+type SimpleRecord3 =
     { IntValue: int
       StringValue: string
       BoolValue: bool }
 
 [<Struct>]
-type StructRecord =
+type StructRecord3 =
     { IntValue: int
       StringValue: string
       BoolValue: bool }
 
-let updateSimpleRecord (record: SimpleRecord) (i: int) = { record with IntValue = i }
-let updateStructRecord (record: StructRecord) (i: int) = { record with IntValue = i }
+let updateSimpleRecord3 (record: SimpleRecord3) (i: int) = { record with IntValue = i }
+let updateStructRecord3 (record: StructRecord3) (i: int) = { record with IntValue = i }
 
 [<MemoryDiagnoser>]
 type Benchmarks() =
@@ -30,7 +30,7 @@ type Benchmarks() =
     member __.SimpleRecord() =
         __.data
         |> Seq.fold
-            updateSimpleRecord
+            updateSimpleRecord3
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true }
@@ -40,7 +40,7 @@ type Benchmarks() =
     member __.StructRecord() =
         __.data
         |> Seq.fold
-            updateStructRecord
+            updateStructRecord3
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true }
