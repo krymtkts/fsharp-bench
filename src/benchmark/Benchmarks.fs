@@ -1,39 +1,30 @@
-﻿module benchmark 
+﻿module benchmark
 
-open System
-open BenchmarkDotNet
 open BenchmarkDotNet.Attributes
 
-type Benchmarks () =
-    [<Params(0, 1, 15, 100)>]
-    member val public sleepTime = 0 with get, set
+type SimpleRecord =
+    { IntValue: int
+      StringValue: string
+      BoolValue: bool }
 
-    // [<GlobalSetup>]
-    // member self.GlobalSetup() =
-    //     printfn "%s" "Global Setup"
+let updateRecord (record: SimpleRecord) (i: int) = { record with IntValue = i }
 
-    // [<GlobalCleanup>]
-    // member self.GlobalCleanup() =
-    //     printfn "%s" "Global Cleanup"
+[<MemoryDiagnoser>]
+type Benchmarks() =
+    [<Params(1000, 10000, 100000, 1000000)>]
+    member val N = 0 with get, set
 
-    // [<IterationSetup>]
-    // member self.IterationSetup() =
-    //     printfn "%s" "Iteration Setup"
-    
-    // [<IterationCleanup>]
-    // member self.IterationCleanup() =
-    //     printfn "%s" "Iteration Cleanup"
+    member val data: int seq = seq {  } with get, set
+
+    [<GlobalSetup>]
+    member __.GlobalSetup() = __.data <- seq { 1 .. __.N }
 
     [<Benchmark>]
-    member this.Thread () = System.Threading.Thread.Sleep(this.sleepTime)
-
-    [<Benchmark>]
-    member this.Task () = System.Threading.Tasks.Task.Delay(this.sleepTime)
-
-    [<Benchmark>]
-    member this.AsyncToTask () = Async.Sleep(this.sleepTime) |> Async.StartAsTask
-
-    [<Benchmark>]
-    member this.AsyncToSync () = Async.Sleep(this.sleepTime) |> Async.RunSynchronously
-
-
+    member __.SimpleRecord() =
+        __.data
+        |> Seq.fold
+            updateRecord
+            { IntValue = 0
+              StringValue = "Hello"
+              BoolValue = true }
+        |> ignore
