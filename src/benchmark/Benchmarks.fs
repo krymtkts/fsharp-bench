@@ -104,7 +104,7 @@ let updateStructRecord24 (record: StructRecord24) (i: int) = { record with IntVa
 
 [<MemoryDiagnoser>]
 type Benchmarks() =
-    [<Params(1000, 10000, 100000, 1000000)>]
+    [<Params(1000, 10000, 100000)>]
     member val N = 0 with get, set
 
     member val data: int seq = seq {  } with get, set
