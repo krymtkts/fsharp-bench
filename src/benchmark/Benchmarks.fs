@@ -7,7 +7,14 @@ type SimpleRecord =
       StringValue: string
       BoolValue: bool }
 
-let updateRecord (record: SimpleRecord) (i: int) = { record with IntValue = i }
+[<Struct>]
+type StructRecord =
+    { IntValue: int
+      StringValue: string
+      BoolValue: bool }
+
+let updateSimpleRecord (record: SimpleRecord) (i: int) = { record with IntValue = i }
+let updateStructRecord (record: StructRecord) (i: int) = { record with IntValue = i }
 
 [<MemoryDiagnoser>]
 type Benchmarks() =
@@ -23,7 +30,17 @@ type Benchmarks() =
     member __.SimpleRecord() =
         __.data
         |> Seq.fold
-            updateRecord
+            updateSimpleRecord
+            { IntValue = 0
+              StringValue = "Hello"
+              BoolValue = true }
+        |> ignore
+
+    [<Benchmark>]
+    member __.StructRecord() =
+        __.data
+        |> Seq.fold
+            updateStructRecord
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true }
