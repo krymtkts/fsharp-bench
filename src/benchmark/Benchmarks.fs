@@ -247,6 +247,43 @@ type Benchmarks() =
               BoolValue4 = true }
         |> ignore
 
+    [<Benchmark>]
+    member __.StructRecord12rec() =
+        recFoldBack
+            updateStructRecord12
+            __.recData
+            { IntValue = 0
+              StringValue = "Hello"
+              BoolValue = true
+              IntValue2 = 0
+              StringValue2 = "Hello"
+              BoolValue2 = true
+              IntValue3 = 0
+              StringValue3 = "Hello"
+              BoolValue3 = true
+              IntValue4 = 0
+              StringValue4 = "Hello"
+              BoolValue4 = true }
+        |> ignore
+
+    [<Benchmark>]
+    member __.SimpleRecord12rec() =
+        recFoldBack
+            updateSimpleRecord12
+            __.recData
+            { IntValue = 0
+              StringValue = "Hello"
+              BoolValue = true
+              IntValue2 = 0
+              StringValue2 = "Hello"
+              BoolValue2 = true
+              IntValue3 = 0
+              StringValue3 = "Hello"
+              BoolValue3 = true
+              IntValue4 = 0
+              StringValue4 = "Hello"
+              BoolValue4 = true }
+        |> ignore
 
     [<Benchmark>]
     member __.SimpleRecord24() =
@@ -284,6 +321,68 @@ type Benchmarks() =
         Seq.foldBack
             updateStructRecord24
             __.data
+            { IntValue = 0
+              StringValue = "Hello"
+              BoolValue = true
+              IntValue2 = 0
+              StringValue2 = "Hello"
+              BoolValue2 = true
+              IntValue3 = 0
+              StringValue3 = "Hello"
+              BoolValue3 = true
+              IntValue4 = 0
+              StringValue4 = "Hello"
+              BoolValue4 = true
+              IntValue5 = 0
+              StringValue5 = "Hello"
+              BoolValue5 = true
+              IntValue6 = 0
+              StringValue6 = "Hello"
+              BoolValue6 = true
+              IntValue7 = 0
+              StringValue7 = "Hello"
+              BoolValue7 = true
+              IntValue8 = 0
+              StringValue8 = "Hello"
+              BoolValue8 = true }
+        |> ignore
+
+    [<Benchmark>]
+    member __.SimpleRecord24rec() =
+        recFoldBack
+            updateSimpleRecord24
+            __.recData
+            { IntValue = 0
+              StringValue = "Hello"
+              BoolValue = true
+              IntValue2 = 0
+              StringValue2 = "Hello"
+              BoolValue2 = true
+              IntValue3 = 0
+              StringValue3 = "Hello"
+              BoolValue3 = true
+              IntValue4 = 0
+              StringValue4 = "Hello"
+              BoolValue4 = true
+              IntValue5 = 0
+              StringValue5 = "Hello"
+              BoolValue5 = true
+              IntValue6 = 0
+              StringValue6 = "Hello"
+              BoolValue6 = true
+              IntValue7 = 0
+              StringValue7 = "Hello"
+              BoolValue7 = true
+              IntValue8 = 0
+              StringValue8 = "Hello"
+              BoolValue8 = true }
+        |> ignore
+
+    [<Benchmark>]
+    member __.StructRecord24rec() =
+        recFoldBack
+            updateStructRecord24
+            __.recData
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true
