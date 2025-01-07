@@ -95,52 +95,64 @@ type StructRecord24 =
       StringValue8: string
       BoolValue8: bool }
 
-let updateSimpleRecord3 (record: SimpleRecord3) (i: int) = { record with IntValue = i }
-let updateStructRecord3 (record: StructRecord3) (i: int) = { record with IntValue = i }
-let updateSimpleRecord12 (record: SimpleRecord12) (i: int) = { record with IntValue = i }
-let updateStructRecord12 (record: StructRecord12) (i: int) = { record with IntValue = i }
-let updateSimpleRecord24 (record: SimpleRecord24) (i: int) = { record with IntValue = i }
-let updateStructRecord24 (record: StructRecord24) (i: int) = { record with IntValue = i }
+let updateSimpleRecord3 (i: int) (record: SimpleRecord3) = { record with IntValue = i }
+let updateStructRecord3 (i: int) (record: StructRecord3) = { record with IntValue = i }
+let updateSimpleRecord12 (i: int) (record: SimpleRecord12) = { record with IntValue = i }
+let updateStructRecord12 (i: int) (record: StructRecord12) = { record with IntValue = i }
+let updateSimpleRecord24 (i: int) (record: SimpleRecord24) = { record with IntValue = i }
+let updateStructRecord24 (i: int) (record: StructRecord24) = { record with IntValue = i }
 
-let updateSimpleRecord3two (record: SimpleRecord3) (i: int) =
-    updateSimpleRecord3 { record with StringValue = string i } i
+let updateSimpleRecord3two (i: int) (record: SimpleRecord3) =
+    { record with StringValue = string i }
+    |> updateSimpleRecord3 i
 
-let updateStructRecord3two (record: StructRecord3) (i: int) =
-    updateStructRecord3 { record with StringValue = string i } i
+let updateStructRecord3two (i: int) (record: StructRecord3) =
+    { record with StringValue = string i }
+    |> updateStructRecord3 i
 
-let updateSimpleRecord12two (record: SimpleRecord12) (i: int) =
-    updateSimpleRecord12 { record with StringValue = string i } i
+let updateSimpleRecord12two (i: int) (record: SimpleRecord12) =
+    { record with StringValue = string i }
+    |> updateSimpleRecord12 i
 
-let updateStructRecord12two (record: StructRecord12) (i: int) =
-    updateStructRecord12 { record with StringValue = string i } i
+let updateStructRecord12two (i: int) (record: StructRecord12) =
+    { record with StringValue = string i }
+    |> updateStructRecord12 i
 
-let updateSimpleRecord24two (record: SimpleRecord24) (i: int) =
-    updateSimpleRecord24 { record with StringValue = string i } i
+let updateSimpleRecord24two (i: int) (record: SimpleRecord24) =
+    { record with StringValue = string i }
+    |> updateSimpleRecord24 i
 
-let updateStructRecord24two (record: StructRecord24) (i: int) =
-    updateStructRecord24 { record with StringValue = string i } i
+let updateStructRecord24two (i: int) (record: StructRecord24) =
+    { record with StringValue = string i }
+    |> updateStructRecord24 i
 
-let updateSimpleRecord3three (record: SimpleRecord3) (i: int) =
-    updateSimpleRecord3two { record with BoolValue = i % 2 = 0 } i
+let updateSimpleRecord3three (i: int) (record: SimpleRecord3) =
+    { record with BoolValue = i % 2 = 0 }
+    |> updateSimpleRecord3two i
 
-let updateStructRecord3three (record: StructRecord3) (i: int) =
-    updateStructRecord3two { record with BoolValue = i % 2 = 0 } i
+let updateStructRecord3three (i: int) (record: StructRecord3) =
+    { record with BoolValue = i % 2 = 0 }
+    |> updateStructRecord3two i
 
-let updateSimpleRecord12three (record: SimpleRecord12) (i: int) =
-    updateSimpleRecord12two { record with BoolValue = i % 2 = 0 } i
+let updateSimpleRecord12three (i: int) (record: SimpleRecord12) =
+    { record with BoolValue = i % 2 = 0 }
+    |> updateSimpleRecord12two i
 
-let updateStructRecord12three (record: StructRecord12) (i: int) =
-    updateStructRecord12two { record with BoolValue = i % 2 = 0 } i
+let updateStructRecord12three (i: int) (record: StructRecord12) =
+    { record with BoolValue = i % 2 = 0 }
+    |> updateStructRecord12two i
 
-let updateSimpleRecord24three (record: SimpleRecord24) (i: int) =
-    updateSimpleRecord24two { record with BoolValue = i % 2 = 0 } i
+let updateSimpleRecord24three (i: int) (record: SimpleRecord24) =
+    { record with BoolValue = i % 2 = 0 }
+    |> updateSimpleRecord24two i
 
-let updateStructRecord24three (record: StructRecord24) (i: int) =
-    updateStructRecord24two { record with BoolValue = i % 2 = 0 } i
+let updateStructRecord24three (i: int) (record: StructRecord24) =
+    { record with BoolValue = i % 2 = 0 }
+    |> updateStructRecord24two i
 
 [<MemoryDiagnoser>]
 type Benchmarks() =
-    [<Params(1000, 10000, 10000)>]
+    [<Params(100, 1000, 10000)>]
     member val N = 0 with get, set
 
     member val data: int seq = seq {  } with get, set
@@ -150,9 +162,9 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.SimpleRecord3() =
-        __.data
-        |> Seq.fold
+        Seq.foldBack
             updateSimpleRecord3
+            __.data
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true }
@@ -160,9 +172,9 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.StructRecord3() =
-        __.data
-        |> Seq.fold
+        Seq.foldBack
             updateStructRecord3
+            __.data
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true }
@@ -170,9 +182,9 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.SimpleRecord12() =
-        __.data
-        |> Seq.fold
+        Seq.foldBack
             updateSimpleRecord12
+            __.data
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true
@@ -189,9 +201,9 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.StructRecord12() =
-        __.data
-        |> Seq.fold
+        Seq.foldBack
             updateStructRecord12
+            __.data
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true
@@ -209,9 +221,9 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.SimpleRecord24() =
-        __.data
-        |> Seq.fold
+        Seq.foldBack
             updateSimpleRecord24
+            __.data
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true
@@ -240,9 +252,9 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.StructRecord24() =
-        __.data
-        |> Seq.fold
+        Seq.foldBack
             updateStructRecord24
+            __.data
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true
@@ -271,9 +283,9 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.SimpleRecord3two() =
-        __.data
-        |> Seq.fold
+        Seq.foldBack
             updateSimpleRecord3two
+            __.data
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true }
@@ -281,9 +293,9 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.StructRecord3two() =
-        __.data
-        |> Seq.fold
+        Seq.foldBack
             updateStructRecord3two
+            __.data
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true }
@@ -291,9 +303,9 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.SimpleRecord12two() =
-        __.data
-        |> Seq.fold
+        Seq.foldBack
             updateSimpleRecord12two
+            __.data
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true
@@ -310,9 +322,9 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.StructRecord12two() =
-        __.data
-        |> Seq.fold
+        Seq.foldBack
             updateStructRecord12two
+            __.data
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true
@@ -330,9 +342,9 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.SimpleRecord24two() =
-        __.data
-        |> Seq.fold
+        Seq.foldBack
             updateSimpleRecord24two
+            __.data
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true
@@ -361,9 +373,9 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.StructRecord24two() =
-        __.data
-        |> Seq.fold
+        Seq.foldBack
             updateStructRecord24two
+            __.data
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true
@@ -392,9 +404,9 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.SimpleRecord3three() =
-        __.data
-        |> Seq.fold
+        Seq.foldBack
             updateSimpleRecord3three
+            __.data
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true }
@@ -402,9 +414,9 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.StructRecord3three() =
-        __.data
-        |> Seq.fold
+        Seq.foldBack
             updateStructRecord3three
+            __.data
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true }
@@ -412,9 +424,9 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.SimpleRecord12three() =
-        __.data
-        |> Seq.fold
+        Seq.foldBack
             updateSimpleRecord12three
+            __.data
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true
@@ -431,9 +443,9 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.StructRecord12three() =
-        __.data
-        |> Seq.fold
+        Seq.foldBack
             updateStructRecord12three
+            __.data
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true
@@ -451,9 +463,9 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.SimpleRecord24three() =
-        __.data
-        |> Seq.fold
+        Seq.foldBack
             updateSimpleRecord24three
+            __.data
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true
@@ -482,9 +494,9 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.StructRecord24three() =
-        __.data
-        |> Seq.fold
+        Seq.foldBack
             updateStructRecord24three
+            __.data
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true
