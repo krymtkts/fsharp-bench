@@ -1,4 +1,4 @@
-﻿module benchmark
+module benchmark
 
 open BenchmarkDotNet.Attributes
 
@@ -150,15 +150,24 @@ let updateStructRecord24three (i: int) (record: StructRecord24) =
     { record with BoolValue = i % 2 = 0 }
     |> updateStructRecord24two i
 
+[<TailCall>]
+let rec recFoldBack f xs acc =
+    match xs with
+    | [] -> acc
+    | x :: xs -> recFoldBack f xs (f x acc)
+
 [<MemoryDiagnoser>]
 type Benchmarks() =
-    [<Params(100, 1000, 10000)>]
+    [<Params(10, 100, 1000)>]
     member val N = 0 with get, set
 
     member val data: int seq = seq {  } with get, set
+    member val recData: int list = [] with get, set
 
     [<GlobalSetup>]
-    member __.GlobalSetup() = __.data <- seq { 1 .. __.N }
+    member __.GlobalSetup() =
+        __.data <- seq { 1 .. __.N }
+        __.recData <- seq { 1 .. __.N } |> List.ofSeq
 
     [<Benchmark>]
     member __.SimpleRecord3() =
@@ -175,6 +184,26 @@ type Benchmarks() =
         Seq.foldBack
             updateStructRecord3
             __.data
+            { IntValue = 0
+              StringValue = "Hello"
+              BoolValue = true }
+        |> ignore
+
+    [<Benchmark>]
+    member __.SimpleRecord3rec() =
+        recFoldBack
+            updateSimpleRecord3
+            __.recData
+            { IntValue = 0
+              StringValue = "Hello"
+              BoolValue = true }
+        |> ignore
+
+    [<Benchmark>]
+    member __.StructRecord3rec() =
+        recFoldBack
+            updateStructRecord3
+            __.recData
             { IntValue = 0
               StringValue = "Hello"
               BoolValue = true }
