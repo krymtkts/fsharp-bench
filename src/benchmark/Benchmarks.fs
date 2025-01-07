@@ -7,6 +7,14 @@ type SimpleRecord3 =
       StringValue: string
       BoolValue: bool }
 
+type SimpleRecord6 =
+    { IntValue: int
+      StringValue: string
+      BoolValue: bool
+      IntValue2: int
+      StringValue2: string
+      BoolValue2: bool }
+
 type SimpleRecord12 =
     { IntValue: int
       StringValue: string
@@ -20,6 +28,26 @@ type SimpleRecord12 =
       IntValue4: int
       StringValue4: string
       BoolValue4: bool }
+
+type SimpleRecord18 =
+    { IntValue: int
+      StringValue: string
+      BoolValue: bool
+      IntValue2: int
+      StringValue2: string
+      BoolValue2: bool
+      IntValue3: int
+      StringValue3: string
+      BoolValue3: bool
+      IntValue4: int
+      StringValue4: string
+      BoolValue4: bool
+      IntValue5: int
+      StringValue5: string
+      BoolValue5: bool
+      IntValue6: int
+      StringValue6: string
+      BoolValue6: bool }
 
 type SimpleRecord24 =
     { IntValue: int
@@ -54,6 +82,15 @@ type StructRecord3 =
       BoolValue: bool }
 
 [<Struct>]
+type StructRecord6 =
+    { IntValue: int
+      StringValue: string
+      BoolValue: bool
+      IntValue2: int
+      StringValue2: string
+      BoolValue2: bool }
+
+[<Struct>]
 type StructRecord12 =
     { IntValue: int
       StringValue: string
@@ -67,6 +104,27 @@ type StructRecord12 =
       IntValue4: int
       StringValue4: string
       BoolValue4: bool }
+
+[<Struct>]
+type StructRecord18 =
+    { IntValue: int
+      StringValue: string
+      BoolValue: bool
+      IntValue2: int
+      StringValue2: string
+      BoolValue2: bool
+      IntValue3: int
+      StringValue3: string
+      BoolValue3: bool
+      IntValue4: int
+      StringValue4: string
+      BoolValue4: bool
+      IntValue5: int
+      StringValue5: string
+      BoolValue5: bool
+      IntValue6: int
+      StringValue6: string
+      BoolValue6: bool }
 
 [<Struct>]
 type StructRecord24 =
@@ -97,8 +155,12 @@ type StructRecord24 =
 
 let updateSimpleRecord3 (i: int) (record: SimpleRecord3) = { record with IntValue = i }
 let updateStructRecord3 (i: int) (record: StructRecord3) = { record with IntValue = i }
+let updateSimpleRecord6 (i: int) (record: SimpleRecord6) = { record with IntValue = i }
+let updateStructRecord6 (i: int) (record: StructRecord6) = { record with IntValue = i }
 let updateSimpleRecord12 (i: int) (record: SimpleRecord12) = { record with IntValue = i }
 let updateStructRecord12 (i: int) (record: StructRecord12) = { record with IntValue = i }
+let updateSimpleRecord18 (i: int) (record: SimpleRecord18) = { record with IntValue = i }
+let updateStructRecord18 (i: int) (record: StructRecord18) = { record with IntValue = i }
 let updateSimpleRecord24 (i: int) (record: SimpleRecord24) = { record with IntValue = i }
 let updateStructRecord24 (i: int) (record: StructRecord24) = { record with IntValue = i }
 
@@ -119,6 +181,22 @@ type Benchmarks() =
         { IntValue = 0
           StringValue = "Hello"
           BoolValue = true }
+
+    let simple6: SimpleRecord6 =
+        { IntValue = 0
+          StringValue = "Hello"
+          BoolValue = true
+          IntValue2 = 0
+          StringValue2 = "Hello"
+          BoolValue2 = true }
+
+    let struct6: StructRecord6 =
+        { IntValue = 0
+          StringValue = "Hello"
+          BoolValue = true
+          IntValue2 = 0
+          StringValue2 = "Hello"
+          BoolValue2 = true }
 
     let simple12: SimpleRecord12 =
         { IntValue = 0
@@ -147,6 +225,46 @@ type Benchmarks() =
           IntValue4 = 0
           StringValue4 = "Hello"
           BoolValue4 = true }
+
+    let simple18: SimpleRecord18 =
+        { IntValue = 0
+          StringValue = "Hello"
+          BoolValue = true
+          IntValue2 = 0
+          StringValue2 = "Hello"
+          BoolValue2 = true
+          IntValue3 = 0
+          StringValue3 = "Hello"
+          BoolValue3 = true
+          IntValue4 = 0
+          StringValue4 = "Hello"
+          BoolValue4 = true
+          IntValue5 = 0
+          StringValue5 = "Hello"
+          BoolValue5 = true
+          IntValue6 = 0
+          StringValue6 = "Hello"
+          BoolValue6 = true }
+
+    let struct18: StructRecord18 =
+        { IntValue = 0
+          StringValue = "Hello"
+          BoolValue = true
+          IntValue2 = 0
+          StringValue2 = "Hello"
+          BoolValue2 = true
+          IntValue3 = 0
+          StringValue3 = "Hello"
+          BoolValue3 = true
+          IntValue4 = 0
+          StringValue4 = "Hello"
+          BoolValue4 = true
+          IntValue5 = 0
+          StringValue5 = "Hello"
+          BoolValue5 = true
+          IntValue6 = 0
+          StringValue6 = "Hello"
+          BoolValue6 = true }
 
     let simple24: SimpleRecord24 =
         { IntValue = 0
@@ -200,7 +318,6 @@ type Benchmarks() =
           StringValue8 = "Hello"
           BoolValue8 = true }
 
-
     [<Params(10, 100, 1000)>]
     member val N = 0 with get, set
 
@@ -229,6 +346,22 @@ type Benchmarks() =
         recFoldBack updateStructRecord3 __.recData struct3
 
     [<Benchmark>]
+    member __.SimpleRecord6() =
+        Seq.foldBack updateSimpleRecord6 __.data simple6
+
+    [<Benchmark>]
+    member __.StructRecord6() =
+        Seq.foldBack updateStructRecord6 __.data struct6
+
+    [<Benchmark>]
+    member __.SimpleRecord6rec() =
+        recFoldBack updateSimpleRecord6 __.recData simple6
+
+    [<Benchmark>]
+    member __.StructRecord6rec() =
+        recFoldBack updateStructRecord6 __.recData struct6
+
+    [<Benchmark>]
     member __.SimpleRecord12() =
         Seq.foldBack updateSimpleRecord12 __.data simple12
 
@@ -243,6 +376,22 @@ type Benchmarks() =
     [<Benchmark>]
     member __.StructRecord12rec() =
         recFoldBack updateStructRecord12 __.recData struct12
+
+    [<Benchmark>]
+    member __.SimpleRecord18() =
+        Seq.foldBack updateSimpleRecord18 __.data simple18
+
+    [<Benchmark>]
+    member __.StructRecord18() =
+        Seq.foldBack updateStructRecord18 __.data struct18
+
+    [<Benchmark>]
+    member __.SimpleRecord18rec() =
+        recFoldBack updateSimpleRecord18 __.recData simple18
+
+    [<Benchmark>]
+    member __.StructRecord18rec() =
+        recFoldBack updateStructRecord18 __.recData struct18
 
     [<Benchmark>]
     member __.SimpleRecord24() =
