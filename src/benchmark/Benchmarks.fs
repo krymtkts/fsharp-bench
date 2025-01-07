@@ -110,6 +110,97 @@ let rec recFoldBack f xs acc =
 
 [<MemoryDiagnoser>]
 type Benchmarks() =
+    let simple3: SimpleRecord3 =
+        { IntValue = 0
+          StringValue = "Hello"
+          BoolValue = true }
+
+    let struct3: StructRecord3 =
+        { IntValue = 0
+          StringValue = "Hello"
+          BoolValue = true }
+
+    let simple12: SimpleRecord12 =
+        { IntValue = 0
+          StringValue = "Hello"
+          BoolValue = true
+          IntValue2 = 0
+          StringValue2 = "Hello"
+          BoolValue2 = true
+          IntValue3 = 0
+          StringValue3 = "Hello"
+          BoolValue3 = true
+          IntValue4 = 0
+          StringValue4 = "Hello"
+          BoolValue4 = true }
+
+    let struct12: StructRecord12 =
+        { IntValue = 0
+          StringValue = "Hello"
+          BoolValue = true
+          IntValue2 = 0
+          StringValue2 = "Hello"
+          BoolValue2 = true
+          IntValue3 = 0
+          StringValue3 = "Hello"
+          BoolValue3 = true
+          IntValue4 = 0
+          StringValue4 = "Hello"
+          BoolValue4 = true }
+
+    let simple24: SimpleRecord24 =
+        { IntValue = 0
+          StringValue = "Hello"
+          BoolValue = true
+          IntValue2 = 0
+          StringValue2 = "Hello"
+          BoolValue2 = true
+          IntValue3 = 0
+          StringValue3 = "Hello"
+          BoolValue3 = true
+          IntValue4 = 0
+          StringValue4 = "Hello"
+          BoolValue4 = true
+          IntValue5 = 0
+          StringValue5 = "Hello"
+          BoolValue5 = true
+          IntValue6 = 0
+          StringValue6 = "Hello"
+          BoolValue6 = true
+          IntValue7 = 0
+          StringValue7 = "Hello"
+          BoolValue7 = true
+          IntValue8 = 0
+          StringValue8 = "Hello"
+          BoolValue8 = true }
+
+    let struct24: StructRecord24 =
+        { IntValue = 0
+          StringValue = "Hello"
+          BoolValue = true
+          IntValue2 = 0
+          StringValue2 = "Hello"
+          BoolValue2 = true
+          IntValue3 = 0
+          StringValue3 = "Hello"
+          BoolValue3 = true
+          IntValue4 = 0
+          StringValue4 = "Hello"
+          BoolValue4 = true
+          IntValue5 = 0
+          StringValue5 = "Hello"
+          BoolValue5 = true
+          IntValue6 = 0
+          StringValue6 = "Hello"
+          BoolValue6 = true
+          IntValue7 = 0
+          StringValue7 = "Hello"
+          BoolValue7 = true
+          IntValue8 = 0
+          StringValue8 = "Hello"
+          BoolValue8 = true }
+
+
     [<Params(10, 100, 1000)>]
     member val N = 0 with get, set
 
@@ -123,240 +214,48 @@ type Benchmarks() =
 
     [<Benchmark>]
     member __.SimpleRecord3() =
-        Seq.foldBack
-            updateSimpleRecord3
-            __.data
-            { IntValue = 0
-              StringValue = "Hello"
-              BoolValue = true }
-        |> ignore
+        Seq.foldBack updateSimpleRecord3 __.data simple3
 
     [<Benchmark>]
     member __.StructRecord3() =
-        Seq.foldBack
-            updateStructRecord3
-            __.data
-            { IntValue = 0
-              StringValue = "Hello"
-              BoolValue = true }
-        |> ignore
+        Seq.foldBack updateStructRecord3 __.data struct3
 
     [<Benchmark>]
     member __.SimpleRecord3rec() =
-        recFoldBack
-            updateSimpleRecord3
-            __.recData
-            { IntValue = 0
-              StringValue = "Hello"
-              BoolValue = true }
-        |> ignore
+        recFoldBack updateSimpleRecord3 __.recData simple3
 
     [<Benchmark>]
     member __.StructRecord3rec() =
-        recFoldBack
-            updateStructRecord3
-            __.recData
-            { IntValue = 0
-              StringValue = "Hello"
-              BoolValue = true }
-        |> ignore
+        recFoldBack updateStructRecord3 __.recData struct3
 
     [<Benchmark>]
     member __.SimpleRecord12() =
-        Seq.foldBack
-            updateSimpleRecord12
-            __.data
-            { IntValue = 0
-              StringValue = "Hello"
-              BoolValue = true
-              IntValue2 = 0
-              StringValue2 = "Hello"
-              BoolValue2 = true
-              IntValue3 = 0
-              StringValue3 = "Hello"
-              BoolValue3 = true
-              IntValue4 = 0
-              StringValue4 = "Hello"
-              BoolValue4 = true }
-        |> ignore
+        Seq.foldBack updateSimpleRecord12 __.data simple12
 
     [<Benchmark>]
     member __.StructRecord12() =
-        Seq.foldBack
-            updateStructRecord12
-            __.data
-            { IntValue = 0
-              StringValue = "Hello"
-              BoolValue = true
-              IntValue2 = 0
-              StringValue2 = "Hello"
-              BoolValue2 = true
-              IntValue3 = 0
-              StringValue3 = "Hello"
-              BoolValue3 = true
-              IntValue4 = 0
-              StringValue4 = "Hello"
-              BoolValue4 = true }
-        |> ignore
-
-    [<Benchmark>]
-    member __.StructRecord12rec() =
-        recFoldBack
-            updateStructRecord12
-            __.recData
-            { IntValue = 0
-              StringValue = "Hello"
-              BoolValue = true
-              IntValue2 = 0
-              StringValue2 = "Hello"
-              BoolValue2 = true
-              IntValue3 = 0
-              StringValue3 = "Hello"
-              BoolValue3 = true
-              IntValue4 = 0
-              StringValue4 = "Hello"
-              BoolValue4 = true }
-        |> ignore
+        Seq.foldBack updateStructRecord12 __.data struct12
 
     [<Benchmark>]
     member __.SimpleRecord12rec() =
-        recFoldBack
-            updateSimpleRecord12
-            __.recData
-            { IntValue = 0
-              StringValue = "Hello"
-              BoolValue = true
-              IntValue2 = 0
-              StringValue2 = "Hello"
-              BoolValue2 = true
-              IntValue3 = 0
-              StringValue3 = "Hello"
-              BoolValue3 = true
-              IntValue4 = 0
-              StringValue4 = "Hello"
-              BoolValue4 = true }
-        |> ignore
+        recFoldBack updateSimpleRecord12 __.recData simple12
+
+    [<Benchmark>]
+    member __.StructRecord12rec() =
+        recFoldBack updateStructRecord12 __.recData struct12
 
     [<Benchmark>]
     member __.SimpleRecord24() =
-        Seq.foldBack
-            updateSimpleRecord24
-            __.data
-            { IntValue = 0
-              StringValue = "Hello"
-              BoolValue = true
-              IntValue2 = 0
-              StringValue2 = "Hello"
-              BoolValue2 = true
-              IntValue3 = 0
-              StringValue3 = "Hello"
-              BoolValue3 = true
-              IntValue4 = 0
-              StringValue4 = "Hello"
-              BoolValue4 = true
-              IntValue5 = 0
-              StringValue5 = "Hello"
-              BoolValue5 = true
-              IntValue6 = 0
-              StringValue6 = "Hello"
-              BoolValue6 = true
-              IntValue7 = 0
-              StringValue7 = "Hello"
-              BoolValue7 = true
-              IntValue8 = 0
-              StringValue8 = "Hello"
-              BoolValue8 = true }
-        |> ignore
+        Seq.foldBack updateSimpleRecord24 __.data simple24
 
     [<Benchmark>]
     member __.StructRecord24() =
-        Seq.foldBack
-            updateStructRecord24
-            __.data
-            { IntValue = 0
-              StringValue = "Hello"
-              BoolValue = true
-              IntValue2 = 0
-              StringValue2 = "Hello"
-              BoolValue2 = true
-              IntValue3 = 0
-              StringValue3 = "Hello"
-              BoolValue3 = true
-              IntValue4 = 0
-              StringValue4 = "Hello"
-              BoolValue4 = true
-              IntValue5 = 0
-              StringValue5 = "Hello"
-              BoolValue5 = true
-              IntValue6 = 0
-              StringValue6 = "Hello"
-              BoolValue6 = true
-              IntValue7 = 0
-              StringValue7 = "Hello"
-              BoolValue7 = true
-              IntValue8 = 0
-              StringValue8 = "Hello"
-              BoolValue8 = true }
-        |> ignore
+        Seq.foldBack updateStructRecord24 __.data struct24
 
     [<Benchmark>]
     member __.SimpleRecord24rec() =
-        recFoldBack
-            updateSimpleRecord24
-            __.recData
-            { IntValue = 0
-              StringValue = "Hello"
-              BoolValue = true
-              IntValue2 = 0
-              StringValue2 = "Hello"
-              BoolValue2 = true
-              IntValue3 = 0
-              StringValue3 = "Hello"
-              BoolValue3 = true
-              IntValue4 = 0
-              StringValue4 = "Hello"
-              BoolValue4 = true
-              IntValue5 = 0
-              StringValue5 = "Hello"
-              BoolValue5 = true
-              IntValue6 = 0
-              StringValue6 = "Hello"
-              BoolValue6 = true
-              IntValue7 = 0
-              StringValue7 = "Hello"
-              BoolValue7 = true
-              IntValue8 = 0
-              StringValue8 = "Hello"
-              BoolValue8 = true }
-        |> ignore
+        recFoldBack updateSimpleRecord24 __.recData simple24
 
     [<Benchmark>]
     member __.StructRecord24rec() =
-        recFoldBack
-            updateStructRecord24
-            __.recData
-            { IntValue = 0
-              StringValue = "Hello"
-              BoolValue = true
-              IntValue2 = 0
-              StringValue2 = "Hello"
-              BoolValue2 = true
-              IntValue3 = 0
-              StringValue3 = "Hello"
-              BoolValue3 = true
-              IntValue4 = 0
-              StringValue4 = "Hello"
-              BoolValue4 = true
-              IntValue5 = 0
-              StringValue5 = "Hello"
-              BoolValue5 = true
-              IntValue6 = 0
-              StringValue6 = "Hello"
-              BoolValue6 = true
-              IntValue7 = 0
-              StringValue7 = "Hello"
-              BoolValue7 = true
-              IntValue8 = 0
-              StringValue8 = "Hello"
-              BoolValue8 = true }
-        |> ignore
+        recFoldBack updateStructRecord24 __.recData struct24
