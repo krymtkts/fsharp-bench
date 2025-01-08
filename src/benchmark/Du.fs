@@ -166,52 +166,70 @@ type StructDu24 =
 
 let updateSimpleDu3 (i: int) du =
     match du with
-    | SimpleDu3.IntValue1 _ -> SimpleDu3.IntValue1 i
-    | _ -> du
+    | SimpleDu3.IntValue1 _ -> string i |> SimpleDu3.StringValue1
+    | SimpleDu3.StringValue1 _ -> i % 2 = 0 |> SimpleDu3.BoolValue1
+    | SimpleDu3.BoolValue1 _ -> SimpleDu3.IntValue1 i
 
 let updateStructDu3 (i: int) du =
     match du with
-    | StructDu3.IntValue1 _ -> StructDu3.IntValue1 i
-    | _ -> du
+    | StructDu3.IntValue1 _ -> string i |> StructDu3.StringValue1
+    | StructDu3.StringValue1 _ -> i % 2 = 0 |> StructDu3.BoolValue1
+    | StructDu3.BoolValue1 _ -> StructDu3.IntValue1 i
 
 let updateSimpleDu6 (i: int) du =
     match du with
-    | SimpleDu6.IntValue1 _ -> SimpleDu6.IntValue1 i
+    | SimpleDu6.IntValue1 _ -> string i |> SimpleDu6.StringValue1
+    | SimpleDu6.StringValue1 _ -> i % 2 = 0 |> SimpleDu6.BoolValue1
+    | SimpleDu6.BoolValue1 _ -> SimpleDu6.IntValue1 i
     | _ -> du
 
 let updateStructDu6 (i: int) du =
     match du with
-    | StructDu6.IntValue1 _ -> StructDu6.IntValue1 i
+    | StructDu6.IntValue1 _ -> string i |> StructDu6.StringValue1
+    | StructDu6.StringValue1 _ -> i % 2 = 0 |> StructDu6.BoolValue1
+    | StructDu6.BoolValue1 _ -> StructDu6.IntValue1 i
     | _ -> du
 
 let updateSimpleDu12 (i: int) du =
     match du with
-    | SimpleDu12.IntValue1 _ -> SimpleDu12.IntValue1 i
+    | SimpleDu12.IntValue1 _ -> string i |> SimpleDu12.StringValue1
+    | SimpleDu12.StringValue1 _ -> i % 2 = 0 |> SimpleDu12.BoolValue1
+    | SimpleDu12.BoolValue1 _ -> SimpleDu12.IntValue1 i
     | _ -> du
 
 let updateStructDu12 (i: int) du =
     match du with
-    | StructDu12.IntValue1 _ -> StructDu12.IntValue1 i
+    | StructDu12.IntValue1 _ -> string i |> StructDu12.StringValue1
+    | StructDu12.StringValue1 _ -> i % 2 = 0 |> StructDu12.BoolValue1
+    | StructDu12.BoolValue1 _ -> StructDu12.IntValue1 i
     | _ -> du
 
 let updateSimpleDu18 (i: int) du =
     match du with
-    | SimpleDu18.IntValue1 _ -> SimpleDu18.IntValue1 i
+    | SimpleDu18.IntValue1 _ -> string i |> SimpleDu18.StringValue1
+    | SimpleDu18.StringValue1 _ -> i % 2 = 0 |> SimpleDu18.BoolValue1
+    | SimpleDu18.BoolValue1 _ -> SimpleDu18.IntValue1 i
     | _ -> du
 
 let updateStructDu18 (i: int) du =
     match du with
-    | StructDu18.IntValue1 _ -> StructDu18.IntValue1 i
+    | StructDu18.IntValue1 _ -> string i |> StructDu18.StringValue1
+    | StructDu18.StringValue1 _ -> i % 2 = 0 |> StructDu18.BoolValue1
+    | StructDu18.BoolValue1 _ -> StructDu18.IntValue1 i
     | _ -> du
 
 let updateSimpleDu24 (i: int) du =
     match du with
-    | SimpleDu24.IntValue1 _ -> SimpleDu24.IntValue1 i
+    | SimpleDu24.IntValue1 _ -> string i |> SimpleDu24.StringValue1
+    | SimpleDu24.StringValue1 _ -> i % 2 = 0 |> SimpleDu24.BoolValue1
+    | SimpleDu24.BoolValue1 _ -> SimpleDu24.IntValue1 i
     | _ -> du
 
 let updateStructDu24 (i: int) du =
     match du with
-    | StructDu24.IntValue1 _ -> StructDu24.IntValue1 i
+    | StructDu24.IntValue1 _ -> string i |> StructDu24.StringValue1
+    | StructDu24.StringValue1 _ -> i % 2 = 0 |> StructDu24.BoolValue1
+    | StructDu24.BoolValue1 _ -> StructDu24.IntValue1 i
     | _ -> du
 
 [<MemoryDiagnoser>]
