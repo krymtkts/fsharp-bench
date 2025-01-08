@@ -230,81 +230,81 @@ type DuBenchmarks() =
         __.recData <- seq { 1 .. __.N } |> List.ofSeq
 
     [<Benchmark>]
-    member __.SimpleRecord3() =
+    member __.SimpleDu3() =
         Seq.foldBack updateSimpleDu3 __.data (SimpleDu3.IntValue1 1)
 
     [<Benchmark>]
-    member __.StructRecord3() =
+    member __.StructDu3() =
         Seq.foldBack updateStructDu3 __.data (StructDu3.IntValue1 1)
 
     [<Benchmark>]
-    member __.SimpleRecord3rec() =
+    member __.SimpleDu3rec() =
         recFoldBack updateSimpleDu3 __.recData (SimpleDu3.IntValue1 1)
 
     [<Benchmark>]
-    member __.StructRecord3rec() =
+    member __.StructDu3rec() =
         recFoldBack updateStructDu3 __.recData (StructDu3.IntValue1 1)
 
     [<Benchmark>]
-    member __.SimpleRecord6() =
+    member __.SimpleDu6() =
         Seq.foldBack updateSimpleDu6 __.data (SimpleDu6.IntValue1 1)
 
     [<Benchmark>]
-    member __.StructRecord6() =
+    member __.StructDu6() =
         Seq.foldBack updateStructDu6 __.data (StructDu6.IntValue1 1)
 
     [<Benchmark>]
-    member __.SimpleRecord6rec() =
+    member __.SimpleDu6rec() =
         recFoldBack updateSimpleDu6 __.recData (SimpleDu6.IntValue1 1)
 
     [<Benchmark>]
-    member __.StructRecord6rec() =
+    member __.StructDu6rec() =
         recFoldBack updateStructDu6 __.recData (StructDu6.IntValue1 1)
 
     [<Benchmark>]
-    member __.SimpleRecord12() =
+    member __.SimpleDu12() =
         Seq.foldBack updateSimpleDu12 __.data (SimpleDu12.IntValue1 1)
 
     [<Benchmark>]
-    member __.StructRecord12() =
+    member __.StructDu12() =
         Seq.foldBack updateStructDu12 __.data (StructDu12.IntValue1 1)
 
     [<Benchmark>]
-    member __.SimpleRecord12rec() =
+    member __.SimpleDu12rec() =
         recFoldBack updateSimpleDu12 __.recData (SimpleDu12.IntValue1 1)
 
     [<Benchmark>]
-    member __.StructRecord12rec() =
+    member __.StructDu12rec() =
         recFoldBack updateStructDu12 __.recData (StructDu12.IntValue1 1)
 
     [<Benchmark>]
-    member __.SimpleRecord18() =
+    member __.SimpleDu18() =
         Seq.foldBack updateSimpleDu18 __.data (SimpleDu18.IntValue1 1)
 
     [<Benchmark>]
-    member __.StructRecord18() =
+    member __.StructDu18() =
         Seq.foldBack updateStructDu18 __.data (StructDu18.IntValue1 1)
 
     [<Benchmark>]
-    member __.SimpleRecord18rec() =
+    member __.SimpleDu18rec() =
         recFoldBack updateSimpleDu18 __.recData (SimpleDu18.IntValue1 1)
 
     [<Benchmark>]
-    member __.StructRecord18rec() =
+    member __.StructDu18rec() =
         recFoldBack updateStructDu18 __.recData (StructDu18.IntValue1 1)
 
     [<Benchmark>]
-    member __.SimpleRecord24() =
+    member __.SimpleDu24() =
         Seq.foldBack updateSimpleDu24 __.data (SimpleDu24.IntValue1 1)
 
     [<Benchmark>]
-    member __.StructRecord24() =
+    member __.StructDu24() =
         Seq.foldBack updateStructDu24 __.data (StructDu24.IntValue1 1)
 
     [<Benchmark>]
-    member __.SimpleRecord24rec() =
+    member __.SimpleDu24rec() =
         recFoldBack updateSimpleDu24 __.recData (SimpleDu24.IntValue1 1)
 
     [<Benchmark>]
-    member __.StructRecord24rec() =
+    member __.StructDu24rec() =
         recFoldBack updateStructDu24 __.recData (StructDu24.IntValue1 1)
