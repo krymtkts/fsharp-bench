@@ -1,6 +1,6 @@
 ﻿open System
 open BenchmarkDotNet.Running
-open benchmark
+open record
 
 [<EntryPoint>]
 let main argv =

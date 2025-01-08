@@ -1,4 +1,4 @@
-﻿module benchmark
+﻿module record
 
 open BenchmarkDotNet.Attributes
 
