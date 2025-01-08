@@ -1,4 +1,4 @@
-﻿module record
+module record
 
 open BenchmarkDotNet.Attributes
 
@@ -423,7 +423,7 @@ let structNested24: StructNestedRecord24 =
       Nested24 = struct24 }
 
 [<MemoryDiagnoser>]
-type Benchmarks() =
+type RecordBenchmarks() =
 
     [<Params(10, 100, 1000)>]
     member val N = 0 with get, set

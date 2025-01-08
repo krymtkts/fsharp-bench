@@ -1,11 +1,11 @@
-﻿open System
+open System
 open BenchmarkDotNet.Running
 open record
 
 [<EntryPoint>]
 let main argv =
     BenchmarkSwitcher
-        .FromTypes([| typeof<Benchmarks> |])
+        .FromTypes([| typeof<RecordBenchmarks> |])
         .Run(argv)
     |> ignore
 
