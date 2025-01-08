@@ -1,11 +1,15 @@
-open System
+﻿open System
 open BenchmarkDotNet.Running
 open record
+open NestedRecord
 
 [<EntryPoint>]
 let main argv =
     BenchmarkSwitcher
-        .FromTypes([| typeof<RecordBenchmarks> |])
+        .FromTypes(
+            [| typeof<RecordBenchmarks>
+               typeof<NestedRecordBenchmarks> |]
+        )
         .Run(argv)
     |> ignore
 

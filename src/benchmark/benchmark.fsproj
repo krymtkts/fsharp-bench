@@ -21,6 +21,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Record.fs" />
+    <Compile Include="NestedRecord.fs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.fs" />
