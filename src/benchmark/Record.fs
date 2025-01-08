@@ -234,195 +234,196 @@ let rec recFoldBack f xs acc =
     | [] -> acc
     | x :: xs -> recFoldBack f xs (f x acc)
 
+let simple3: SimpleRecord3 =
+    { IntValue = 0
+      StringValue = "Hello"
+      BoolValue = true }
+
+let struct3: StructRecord3 =
+    { IntValue = 0
+      StringValue = "Hello"
+      BoolValue = true }
+
+let simple6: SimpleRecord6 =
+    { IntValue = 0
+      StringValue = "Hello"
+      BoolValue = true
+      IntValue2 = 0
+      StringValue2 = "Hello"
+      BoolValue2 = true }
+
+let struct6: StructRecord6 =
+    { IntValue = 0
+      StringValue = "Hello"
+      BoolValue = true
+      IntValue2 = 0
+      StringValue2 = "Hello"
+      BoolValue2 = true }
+
+let simple12: SimpleRecord12 =
+    { IntValue = 0
+      StringValue = "Hello"
+      BoolValue = true
+      IntValue2 = 0
+      StringValue2 = "Hello"
+      BoolValue2 = true
+      IntValue3 = 0
+      StringValue3 = "Hello"
+      BoolValue3 = true
+      IntValue4 = 0
+      StringValue4 = "Hello"
+      BoolValue4 = true }
+
+let struct12: StructRecord12 =
+    { IntValue = 0
+      StringValue = "Hello"
+      BoolValue = true
+      IntValue2 = 0
+      StringValue2 = "Hello"
+      BoolValue2 = true
+      IntValue3 = 0
+      StringValue3 = "Hello"
+      BoolValue3 = true
+      IntValue4 = 0
+      StringValue4 = "Hello"
+      BoolValue4 = true }
+
+let simple18: SimpleRecord18 =
+    { IntValue = 0
+      StringValue = "Hello"
+      BoolValue = true
+      IntValue2 = 0
+      StringValue2 = "Hello"
+      BoolValue2 = true
+      IntValue3 = 0
+      StringValue3 = "Hello"
+      BoolValue3 = true
+      IntValue4 = 0
+      StringValue4 = "Hello"
+      BoolValue4 = true
+      IntValue5 = 0
+      StringValue5 = "Hello"
+      BoolValue5 = true
+      IntValue6 = 0
+      StringValue6 = "Hello"
+      BoolValue6 = true }
+
+let struct18: StructRecord18 =
+    { IntValue = 0
+      StringValue = "Hello"
+      BoolValue = true
+      IntValue2 = 0
+      StringValue2 = "Hello"
+      BoolValue2 = true
+      IntValue3 = 0
+      StringValue3 = "Hello"
+      BoolValue3 = true
+      IntValue4 = 0
+      StringValue4 = "Hello"
+      BoolValue4 = true
+      IntValue5 = 0
+      StringValue5 = "Hello"
+      BoolValue5 = true
+      IntValue6 = 0
+      StringValue6 = "Hello"
+      BoolValue6 = true }
+
+let simple24: SimpleRecord24 =
+    { IntValue = 0
+      StringValue = "Hello"
+      BoolValue = true
+      IntValue2 = 0
+      StringValue2 = "Hello"
+      BoolValue2 = true
+      IntValue3 = 0
+      StringValue3 = "Hello"
+      BoolValue3 = true
+      IntValue4 = 0
+      StringValue4 = "Hello"
+      BoolValue4 = true
+      IntValue5 = 0
+      StringValue5 = "Hello"
+      BoolValue5 = true
+      IntValue6 = 0
+      StringValue6 = "Hello"
+      BoolValue6 = true
+      IntValue7 = 0
+      StringValue7 = "Hello"
+      BoolValue7 = true
+      IntValue8 = 0
+      StringValue8 = "Hello"
+      BoolValue8 = true }
+
+let struct24: StructRecord24 =
+    { IntValue = 0
+      StringValue = "Hello"
+      BoolValue = true
+      IntValue2 = 0
+      StringValue2 = "Hello"
+      BoolValue2 = true
+      IntValue3 = 0
+      StringValue3 = "Hello"
+      BoolValue3 = true
+      IntValue4 = 0
+      StringValue4 = "Hello"
+      BoolValue4 = true
+      IntValue5 = 0
+      StringValue5 = "Hello"
+      BoolValue5 = true
+      IntValue6 = 0
+      StringValue6 = "Hello"
+      BoolValue6 = true
+      IntValue7 = 0
+      StringValue7 = "Hello"
+      BoolValue7 = true
+      IntValue8 = 0
+      StringValue8 = "Hello"
+      BoolValue8 = true }
+
+let simpleNested3: SimpleNestedRecord3 = { Nested3 = simple3 }
+let simpleNested6: SimpleNestedRecord6 = { Nested3 = simple3; Nested6 = simple6 }
+
+let simpleNested12: SimpleNestedRecord12 =
+    { Nested3 = simple3
+      Nested6 = simple6
+      Nested12 = simple12 }
+
+let simpleNested18: SimpleNestedRecord18 =
+    { Nested3 = simple3
+      Nested6 = simple6
+      Nested12 = simple12
+      Nested18 = simple18 }
+
+let simpleNested24: SimpleNestedRecord24 =
+    { Nested3 = simple3
+      Nested6 = simple6
+      Nested12 = simple12
+      Nested18 = simple18
+      Nested24 = simple24 }
+
+let structNested3: StructNestedRecord3 = { Nested3 = struct3 }
+let structNested6: StructNestedRecord6 = { Nested3 = struct3; Nested6 = struct6 }
+
+let structNested12: StructNestedRecord12 =
+    { Nested3 = struct3
+      Nested6 = struct6
+      Nested12 = struct12 }
+
+let structNested18: StructNestedRecord18 =
+    { Nested3 = struct3
+      Nested6 = struct6
+      Nested12 = struct12
+      Nested18 = struct18 }
+
+let structNested24: StructNestedRecord24 =
+    { Nested3 = struct3
+      Nested6 = struct6
+      Nested12 = struct12
+      Nested18 = struct18
+      Nested24 = struct24 }
+
 [<MemoryDiagnoser>]
 type Benchmarks() =
-    let simple3: SimpleRecord3 =
-        { IntValue = 0
-          StringValue = "Hello"
-          BoolValue = true }
-
-    let struct3: StructRecord3 =
-        { IntValue = 0
-          StringValue = "Hello"
-          BoolValue = true }
-
-    let simple6: SimpleRecord6 =
-        { IntValue = 0
-          StringValue = "Hello"
-          BoolValue = true
-          IntValue2 = 0
-          StringValue2 = "Hello"
-          BoolValue2 = true }
-
-    let struct6: StructRecord6 =
-        { IntValue = 0
-          StringValue = "Hello"
-          BoolValue = true
-          IntValue2 = 0
-          StringValue2 = "Hello"
-          BoolValue2 = true }
-
-    let simple12: SimpleRecord12 =
-        { IntValue = 0
-          StringValue = "Hello"
-          BoolValue = true
-          IntValue2 = 0
-          StringValue2 = "Hello"
-          BoolValue2 = true
-          IntValue3 = 0
-          StringValue3 = "Hello"
-          BoolValue3 = true
-          IntValue4 = 0
-          StringValue4 = "Hello"
-          BoolValue4 = true }
-
-    let struct12: StructRecord12 =
-        { IntValue = 0
-          StringValue = "Hello"
-          BoolValue = true
-          IntValue2 = 0
-          StringValue2 = "Hello"
-          BoolValue2 = true
-          IntValue3 = 0
-          StringValue3 = "Hello"
-          BoolValue3 = true
-          IntValue4 = 0
-          StringValue4 = "Hello"
-          BoolValue4 = true }
-
-    let simple18: SimpleRecord18 =
-        { IntValue = 0
-          StringValue = "Hello"
-          BoolValue = true
-          IntValue2 = 0
-          StringValue2 = "Hello"
-          BoolValue2 = true
-          IntValue3 = 0
-          StringValue3 = "Hello"
-          BoolValue3 = true
-          IntValue4 = 0
-          StringValue4 = "Hello"
-          BoolValue4 = true
-          IntValue5 = 0
-          StringValue5 = "Hello"
-          BoolValue5 = true
-          IntValue6 = 0
-          StringValue6 = "Hello"
-          BoolValue6 = true }
-
-    let struct18: StructRecord18 =
-        { IntValue = 0
-          StringValue = "Hello"
-          BoolValue = true
-          IntValue2 = 0
-          StringValue2 = "Hello"
-          BoolValue2 = true
-          IntValue3 = 0
-          StringValue3 = "Hello"
-          BoolValue3 = true
-          IntValue4 = 0
-          StringValue4 = "Hello"
-          BoolValue4 = true
-          IntValue5 = 0
-          StringValue5 = "Hello"
-          BoolValue5 = true
-          IntValue6 = 0
-          StringValue6 = "Hello"
-          BoolValue6 = true }
-
-    let simple24: SimpleRecord24 =
-        { IntValue = 0
-          StringValue = "Hello"
-          BoolValue = true
-          IntValue2 = 0
-          StringValue2 = "Hello"
-          BoolValue2 = true
-          IntValue3 = 0
-          StringValue3 = "Hello"
-          BoolValue3 = true
-          IntValue4 = 0
-          StringValue4 = "Hello"
-          BoolValue4 = true
-          IntValue5 = 0
-          StringValue5 = "Hello"
-          BoolValue5 = true
-          IntValue6 = 0
-          StringValue6 = "Hello"
-          BoolValue6 = true
-          IntValue7 = 0
-          StringValue7 = "Hello"
-          BoolValue7 = true
-          IntValue8 = 0
-          StringValue8 = "Hello"
-          BoolValue8 = true }
-
-    let struct24: StructRecord24 =
-        { IntValue = 0
-          StringValue = "Hello"
-          BoolValue = true
-          IntValue2 = 0
-          StringValue2 = "Hello"
-          BoolValue2 = true
-          IntValue3 = 0
-          StringValue3 = "Hello"
-          BoolValue3 = true
-          IntValue4 = 0
-          StringValue4 = "Hello"
-          BoolValue4 = true
-          IntValue5 = 0
-          StringValue5 = "Hello"
-          BoolValue5 = true
-          IntValue6 = 0
-          StringValue6 = "Hello"
-          BoolValue6 = true
-          IntValue7 = 0
-          StringValue7 = "Hello"
-          BoolValue7 = true
-          IntValue8 = 0
-          StringValue8 = "Hello"
-          BoolValue8 = true }
-
-    let simpleNested3: SimpleNestedRecord3 = { Nested3 = simple3 }
-    let simpleNested6: SimpleNestedRecord6 = { Nested3 = simple3; Nested6 = simple6 }
-
-    let simpleNested12: SimpleNestedRecord12 =
-        { Nested3 = simple3
-          Nested6 = simple6
-          Nested12 = simple12 }
-
-    let simpleNested18: SimpleNestedRecord18 =
-        { Nested3 = simple3
-          Nested6 = simple6
-          Nested12 = simple12
-          Nested18 = simple18 }
-
-    let simpleNested24: SimpleNestedRecord24 =
-        { Nested3 = simple3
-          Nested6 = simple6
-          Nested12 = simple12
-          Nested18 = simple18
-          Nested24 = simple24 }
-
-    let structNested3: StructNestedRecord3 = { Nested3 = struct3 }
-    let structNested6: StructNestedRecord6 = { Nested3 = struct3; Nested6 = struct6 }
-
-    let structNested12: StructNestedRecord12 =
-        { Nested3 = struct3
-          Nested6 = struct6
-          Nested12 = struct12 }
-
-    let structNested18: StructNestedRecord18 =
-        { Nested3 = struct3
-          Nested6 = struct6
-          Nested12 = struct12
-          Nested18 = struct18 }
-
-    let structNested24: StructNestedRecord24 =
-        { Nested3 = struct3
-          Nested6 = struct6
-          Nested12 = struct12
-          Nested18 = struct18
-          Nested24 = struct24 }
 
     [<Params(10, 100, 1000)>]
     member val N = 0 with get, set
