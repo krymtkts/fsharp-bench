@@ -1,6 +1,6 @@
-﻿open System
+open System
 open BenchmarkDotNet.Running
-open record
+open Record
 open NestedRecord
 open du
 
@@ -8,7 +8,7 @@ open du
 let main argv =
     BenchmarkSwitcher
         .FromTypes(
-            [| typeof<RecordBenchmarks>
+            [| typeof<SimpleRecordBenchmarks>
                typeof<NestedRecordBenchmarks>
                typeof<DuBenchmarks> |]
         )

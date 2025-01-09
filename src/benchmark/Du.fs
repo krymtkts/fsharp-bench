@@ -1,7 +1,7 @@
 ﻿module du
 
 open BenchmarkDotNet.Attributes
-open record
+open Record
 
 [<RequireQualifiedAccess>]
 type SimpleDu3 =

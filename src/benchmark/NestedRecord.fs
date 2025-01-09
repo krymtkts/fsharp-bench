@@ -1,7 +1,7 @@
 ﻿module NestedRecord
 
 open BenchmarkDotNet.Attributes
-open record
+open Record
 
 type SimpleNestedRecord3 = { Nested3: SimpleRecord3 }
 

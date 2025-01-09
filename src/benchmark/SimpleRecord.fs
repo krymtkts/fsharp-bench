@@ -1,4 +1,4 @@
-﻿module record
+﻿module Record
 
 open BenchmarkDotNet.Attributes
 
@@ -317,7 +317,7 @@ let struct24: StructRecord24 =
       BoolValue8 = true }
 
 [<MemoryDiagnoser>]
-type RecordBenchmarks() =
+type SimpleRecordBenchmarks() =
 
     [<Params(10, 100, 1000)>]
     member val N = 0 with get, set
